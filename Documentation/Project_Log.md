@@ -77,3 +77,44 @@ Calculated:
 - Calculate gear ratio.
 - Select PMSM specifications.
 - Begin motor sizing calculations.
+
+
+# Day 2 – Motor Calculations and Project Architecture Improvements
+
+Date: 30 July 2026
+
+---
+
+## Overview
+
+Today's work focused on developing the motor calculation module for the Smart-EV-Powertrain-Simulator. The drivetrain parameters required for the electric vehicle were calculated based on the results obtained from the vehicle dynamics analysis. In addition to the engineering calculations, the project architecture was improved to make the code modular, scalable, and easier to maintain.
+
+---
+
+## Project Architecture Improvements
+
+Initially, every calculation script directly loaded `Project_Parameters.m`. However, the motor calculations required values that were already computed in the vehicle calculations module, such as total tractive force and peak power.
+
+To improve modularity, the project workflow was redesigned as follows:
+
+Project_Parameters.m
+↓
+Vehicle_Calculations.m
+↓
+Vehicle_Calculations.mat
+↓
+Motor_Calculations.m
+
+With this approach, every module receives validated outputs from the previous module instead of recalculating the same values. This architecture will simplify future integration of the battery, inverter, controller, and complete Simulink model.
+
+---
+
+## MATLAB Code Improvements
+
+A major issue was identified where variables such as `projectRoot` and `scriptFolder` were being deleted during execution.
+
+The issue was traced to the presence of:
+
+```matlab
+clearvars
+clc

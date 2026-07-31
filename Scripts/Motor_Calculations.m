@@ -9,6 +9,11 @@ scriptFolder = fileparts(mfilename('fullpath'));
 projectRoot = fileparts(scriptFolder);
 
 run(fullfile(scriptFolder,'Project_Parameters.m'));
+%%=========================================================================
+% Load Vehicle Calculation Results
+%==========================================================================
+
+load(fullfile(projectRoot,'Data','Vehicle_Calculations.mat'),'EV');
 
 %%=========================================================================
 % Wheel Circumference
@@ -36,6 +41,17 @@ EV.Motor.MaximumSpeedRPM = 12000;
 EV.Transmission.GearRatio = ...
     EV.Motor.MaximumSpeedRPM / ...
     EV.Calculated.WheelRPM;
+%%=========================================================================
+% Motor Torque
+%==========================================================================
+
+EV.Calculated.WheelTorque = ...
+    EV.Calculated.TotalTractiveForce * ...
+    EV.Vehicle.WheelRadius;
+
+EV.Motor.PeakTorque = ...
+    EV.Calculated.WheelTorque / ...
+    (EV.Transmission.GearRatio * EV.Transmission.Efficiency);
 
 %%=========================================================================
 % Display Results
@@ -56,6 +72,11 @@ fprintf('Maximum Motor Speed : %.0f RPM\n', ...
 
 fprintf('Gear Ratio          : %.2f : 1\n', ...
     EV.Transmission.GearRatio);
+fprintf('Wheel Torque        : %.2f Nm\n', ...
+    EV.Calculated.WheelTorque);
+
+fprintf('Peak Motor Torque   : %.2f Nm\n', ...
+    EV.Motor.PeakTorque);
 
 %%=========================================================================
 % Save Results
