@@ -47,31 +47,6 @@ EV.Vehicle.RollingResistanceCoeff      = 0.010;
 
 EV.Vehicle.WheelRadius                 = 0.34;        % m
 
-%%=========================================================================
-% BATTERY
-%==========================================================================
-
-EV.Battery.Type                        = "Lithium-Ion";
-
-EV.Battery.NominalVoltage              = [];          % V
-
-EV.Battery.Capacity                    = [];          % kWh
-
-EV.Battery.CellVoltage                 = [];          % V
-
-EV.Battery.CellCapacity_Ah             = [];          % Ah
-
-EV.Battery.SeriesCells                 = [];
-
-EV.Battery.ParallelCells               = [];
-
-EV.Battery.InternalResistance          = [];          % Ohm
-
-EV.Battery.InitialSOC                  = 100;         % %
-
-EV.Battery.MinimumSOC                  = 20;          % %
-
-EV.Battery.MaximumSOC                  = 100;         % %
 
 %%=========================================================================
 % MOTOR
@@ -93,6 +68,64 @@ EV.Motor.MaximumSpeedRPM               = 12000;       % rpm
 
 EV.Motor.MaximumEfficiency             = 0.96;        % -
 
+%%=========================================================================
+% Battery Parameters
+%==========================================================================
+
+% Battery Pack Specifications
+EV.Battery.TargetPackVoltage     = 400;        % V
+EV.Battery.TargetPackEnergykWh   = 45;         % kWh
+EV.Battery.TargetPackEnergyWh    = EV.Battery.TargetPackEnergykWh * 1000;
+
+%%=========================================================================
+% Battery Cell Specifications (LFP 32700 Cell)
+%%=========================================================================
+
+EV.Battery.Cell.Chemistry        = "Lithium Iron Phosphate (LFP)";
+EV.Battery.Cell.FormFactor       = "32700 Cylindrical";
+
+EV.Battery.Cell.NominalVoltage   = 3.2;        % V
+EV.Battery.Cell.MaximumVoltage   = 3.65;       % V
+EV.Battery.Cell.MinimumVoltage   = 2.50;       % V
+
+EV.Battery.Cell.CapacityAh       = 6.0;        % Ah
+EV.Battery.Cell.EnergyWh         = ...
+    EV.Battery.Cell.NominalVoltage * ...
+    EV.Battery.Cell.CapacityAh;
+
+EV.Battery.Cell.ContinuousCurrent = 18;        % A
+EV.Battery.Cell.PeakCurrent       = 30;        % A
+
+EV.Battery.Cell.InternalResistance = 0.006;    % Ohm
+EV.Battery.Cell.Mass              = 0.145;     % kg
+
+%%=========================================================================
+% Calculated Battery Parameters
+%==========================================================================
+
+% Cell Configuration
+EV.Battery.Calculated.Cells.Series      = [];
+EV.Battery.Calculated.Cells.Parallel    = [];
+EV.Battery.Calculated.Cells.Total       = [];
+
+% Pack Voltage
+EV.Battery.Calculated.Voltage.Nominal   = [];
+EV.Battery.Calculated.Voltage.Maximum   = [];
+EV.Battery.Calculated.Voltage.Minimum   = [];
+
+% Pack Capacity
+EV.Battery.Calculated.Capacity.Ah       = [];
+
+% Pack Energy
+EV.Battery.Calculated.Energy.Wh         = [];
+EV.Battery.Calculated.Energy.kWh        = [];
+
+% Pack Current
+EV.Battery.Calculated.Current.Continuous = [];
+EV.Battery.Calculated.Current.Peak    = [];
+
+% Pack Mass
+EV.Battery.Calculated.Mass.Total        = [];
 %%=========================================================================
 % TRANSMISSION
 %==========================================================================

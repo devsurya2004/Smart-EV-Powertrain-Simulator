@@ -119,3 +119,181 @@ The issue was traced to the presence of:
 clearvars
 clc
 
+---
+
+## Battery Module Development
+
+### Date
+20 July 2026
+
+### Overview
+Completed the Battery Pack Design module for the Smart EV Powertrain Simulator. The module calculates the battery pack configuration, validates the design against project specifications, generates a professional console report, and saves the results for use by future modules.
+
+---
+
+### Commit 1 – Battery Pack Sizing
+
+#### Features Implemented
+- Added battery pack configuration calculations.
+- Calculated required series cell count.
+- Calculated required parallel cell count.
+- Calculated total number of cells.
+- Calculated nominal pack voltage.
+- Calculated maximum pack voltage.
+- Calculated minimum pack voltage.
+- Calculated battery pack capacity.
+- Calculated battery pack energy.
+
+#### Architecture Improvements
+- Introduced hierarchical calculated structure.
+
+```
+EV.Battery.Calculated
+```
+
+with the following organization:
+
+```
+Cells
+Voltage
+Capacity
+Energy
+Current
+Mass
+```
+
+- Stored only final calculated values inside the project structure.
+- Kept intermediate calculations as local variables to reduce unnecessary memory usage.
+- Improved consistency with previous project modules.
+
+---
+
+### Commit 2 – Battery Performance and Validation
+
+#### Features Implemented
+- Added continuous battery current calculation.
+- Added peak battery current calculation.
+- Added total battery pack mass calculation.
+
+#### Validation
+- Calculated voltage error percentage.
+- Calculated energy error percentage.
+- Implemented automatic PASS/FAIL validation based on design limits.
+
+Validation Criteria
+
+- Voltage Error ≤ 2%
+- Energy Error ≤ 5%
+
+#### Console Report
+
+Created a professional engineering report including:
+
+- Battery Information
+- Cell Configuration
+- Voltage
+- Capacity & Energy
+- Current Capability
+- Battery Mass
+- Validation Summary
+
+Standardized formatting using section headers for improved readability.
+
+---
+
+### Commit 3 – Module Finalization
+
+#### Features Implemented
+- Added automatic saving of battery calculations.
+
+Output File
+
+```
+Data/Battery_Calculations.mat
+```
+
+- Added save confirmation message.
+- Displayed saved file location after successful execution.
+
+Example Output
+
+```
+Battery calculations saved successfully.
+Location :
+Data/Battery_Calculations.mat
+```
+
+---
+
+### Final Battery Pack Results
+
+| Parameter | Value |
+|-----------|------:|
+| Chemistry | Lithium Iron Phosphate (LFP) |
+| Cell Form Factor | 32700 Cylindrical |
+| Series Cells | 125 |
+| Parallel Cells | 19 |
+| Total Cells | 2375 |
+| Nominal Voltage | 400.00 V |
+| Maximum Voltage | 456.25 V |
+| Minimum Voltage | 312.50 V |
+| Pack Capacity | 114.00 Ah |
+| Pack Energy | 45.60 kWh |
+| Continuous Current | 342.00 A |
+| Peak Current | 570.00 A |
+| Battery Mass | 344.38 kg |
+| Voltage Error | 0.00 % |
+| Energy Error | 1.33 % |
+| Overall Status | PASS |
+
+---
+
+### Files Modified
+
+```
+Scripts/Project_Parameters.m
+Scripts/Battery_Calculations.m
+```
+
+### Files Generated
+
+```
+Data/Battery_Calculations.mat
+```
+
+---
+
+### Notes
+
+- Adopted a consistent engineering report format for console output.
+- Standardized calculated value storage using the `Calculated` hierarchy.
+- Prepared the battery module for integration with future inverter, vehicle dynamics, and energy consumption modules.
+- Battery module is considered complete and ready for use by downstream subsystems.
+
+---
+
+## Current Project Status
+
+✅ Project Initialization
+
+✅ Vehicle Calculations
+
+✅ Motor Calculations
+
+✅ Motor Characteristics
+
+✅ Battery Pack Design
+
+⬜ Transmission
+
+⬜ Inverter
+
+⬜ Drive Cycle
+
+⬜ Vehicle Dynamics
+
+⬜ Energy Consumption
+
+⬜ Regenerative Braking
+
+⬜ Performance Summary
