@@ -11,16 +11,8 @@
 %==========================================================================
 
 clear
-clc
 
-%%=========================================================================
-% Project Initialization
-%==========================================================================
-
-scriptFolder = fileparts(mfilename('fullpath'));
-projectRoot  = fileparts(scriptFolder);
-
-run(fullfile(scriptFolder,'Project_Parameters.m'));
+[EV, scriptFolder, projectRoot] = Initialize_Project();
 
 loadedData = load(fullfile(projectRoot,'Data','Motor_Calculations.mat'),'EV');
 
@@ -201,6 +193,4 @@ fprintf('===========================================\n');
 % Save Results
 %==========================================================================
 
-save(fullfile(projectRoot,...
-    'Data',...
-    'Motor_Characteristics.mat'),'EV');
+save(fullfile(projectRoot,'Data','Motor_Characteristics.mat'),'EV');

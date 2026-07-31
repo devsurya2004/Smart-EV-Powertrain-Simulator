@@ -3,16 +3,8 @@
 %=========================================================================
 
 clear
-clc
 
-%%=========================================================================
-% Project Initialization
-%=========================================================================
-
-scriptFolder = fileparts(mfilename('fullpath'));
-projectRoot  = fileparts(scriptFolder);
-
-run(fullfile(scriptFolder,'Project_Parameters.m'));
+[EV, scriptFolder, projectRoot] = Initialize_Project();
 
 %%=========================================================================
 % Load Vehicle Calculation Results
