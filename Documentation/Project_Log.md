@@ -297,3 +297,185 @@ Data/Battery_Calculations.mat
 ⬜ Regenerative Braking
 
 ⬜ Performance Summary
+---
+
+# Transmission Module Development
+
+### Date
+31 July 2026
+
+### Overview
+
+Completed the Transmission Module for the Smart EV Powertrain Simulator. The module calculates the transmission output characteristics from the motor specifications, evaluates power flow through the transmission, validates the calculations, generates a professional engineering report, and saves the results for use by future modules.
+
+---
+
+## Commit 1 – Transmission Calculations
+
+### Features Implemented
+
+- Created `Transmission_Calculations.m`.
+- Calculated transmission output speed using the gear ratio.
+- Calculated transmission output torque considering transmission efficiency.
+- Calculated transmission speed reduction ratio.
+- Calculated transmission torque multiplication ratio.
+- Calculated transmission input power.
+- Calculated transmission output power.
+- Calculated transmission power losses.
+
+### Architecture Improvements
+
+Introduced the following calculated structure:
+
+```
+EV.Transmission.Calculated
+```
+
+with the following organization:
+
+```
+Output
+    SpeedRPM
+    TorqueNm
+
+Ratio
+    SpeedReduction
+    TorqueMultiplication
+
+Power
+    InputkW
+    OutputkW
+    LosseskW
+```
+
+### Design Decisions
+
+- Stored only transmission-generated outputs inside `EV.Transmission.Calculated`.
+- Avoided duplicating motor parameters already available in `EV.Motor`.
+- Used local variables for intermediate calculations such as angular speed.
+- Maintained consistency with the project coding standard.
+
+---
+
+## Commit 2 – Validation and Professional Reporting
+
+### Features Implemented
+
+- Added automatic transmission validation.
+- Calculated transmission power error.
+- Calculated transmission validation status (PASS / FAIL).
+
+### Validation Criteria
+
+- Power Error ≤ 0.1%
+
+### Console Report
+
+Developed a professional engineering report including:
+
+- Transmission Information
+- Output Performance
+- Transmission Ratio
+- Power Flow
+- Validation Summary
+
+Standardized the report format to match the Battery Module.
+
+---
+
+## Commit 3 – Module Finalization
+
+### Features Implemented
+
+- Added automatic saving of transmission calculation results.
+
+Output File
+
+```
+Data/Transmission_Calculations.mat
+```
+
+- Added save confirmation message.
+- Displayed saved file location after successful execution.
+
+Example Output
+
+```
+Transmission calculations saved successfully.
+Location :
+Data/Transmission_Calculations.mat
+```
+
+---
+
+## Final Transmission Results
+
+| Parameter | Value |
+|-----------|------:|
+| Transmission Type | Single Speed |
+| Gear Ratio | 10.25 |
+| Efficiency | 97.00 % |
+| Output Speed | 1170.73 RPM |
+| Output Torque | 1954.89 Nm |
+| Speed Reduction | 10.25 : 1 |
+| Torque Multiplication | 9.9425 |
+| Input Power | 247.08 kW |
+| Output Power | 239.67 kW |
+| Power Loss | 7.41 kW |
+| Power Error | 0.0000 % |
+| Overall Status | PASS |
+
+---
+
+## Files Modified
+
+```
+Scripts/Project_Parameters.m
+Scripts/Transmission_Calculations.m
+```
+
+---
+
+## Files Generated
+
+```
+Data/Transmission_Calculations.mat
+```
+
+---
+
+## Notes
+
+- Adopted the project-wide coding standard for script structure and formatting.
+- Implemented a professional engineering report consistent with previous modules.
+- Avoided redundant storage of motor input parameters by using the existing `EV.Motor` structure.
+- Maintained modular architecture to support future integration with vehicle dynamics and drive cycle simulations.
+- Transmission module is complete and ready for integration with downstream subsystems.
+
+---
+
+## Current Project Status
+
+✅ Project Initialization
+
+✅ Vehicle Calculations
+
+✅ Motor Calculations
+
+✅ Motor Characteristics
+
+✅ Battery Pack Design
+
+✅ Transmission Module
+
+⬜ Inverter Module
+
+⬜ Vehicle Dynamics
+
+⬜ Drive Cycle Simulation
+
+⬜ Energy Consumption
+
+⬜ Regenerative Braking
+
+⬜ Performance Summary
