@@ -16,6 +16,10 @@
 %   - Peak Mechanical Power
 %==========================================================================
 
+clc
+
+close all
+
 clear
 
 [EV, scriptFolder, projectRoot] = Initialize_Project();

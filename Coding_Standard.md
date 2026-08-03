@@ -120,6 +120,25 @@ Save Results
 ```
 
 Calculations shall never appear after the Display Results section.
+# Loading Dependencies
+
+When a calculation module depends on results from previously completed modules, it shall explicitly load only the required calculated data.
+
+Example
+
+```matlab
+loadedData = load( ...
+    fullfile(projectRoot,'Data','Battery_Calculations.mat'), ...
+    'EV');
+
+EV.Battery.Calculated = loadedData.EV.Battery.Calculated;
+```
+
+Do not overwrite the complete `EV` structure.
+
+Only import the subsystem required by the current module.
+
+This ensures modules remain independent, reusable and easy to test.
 
 ---
 

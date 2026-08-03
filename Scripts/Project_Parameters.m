@@ -140,9 +140,16 @@ EV.Transmission.Efficiency             = 0.97;
 % INVERTER
 %==========================================================================
 
-EV.Inverter.SwitchingFrequency         = [];          % Hz
+EV.Inverter.Type = "Three-Phase Voltage Source Inverter";
 
-EV.Inverter.Efficiency                 = 0.98;
+EV.Inverter.Topology = "Two-Level";
+
+EV.Inverter.SwitchingFrequency = 10000;      % Hz
+
+EV.Inverter.Efficiency = 0.98;
+
+EV.Inverter.ModulationIndex = 0.95;
+
 
 %%=========================================================================
 % DRIVER

@@ -2,6 +2,10 @@
 % Motor Calculations
 %=========================================================================
 
+clc
+
+close all
+
 clear
 
 [EV, scriptFolder, projectRoot] = Initialize_Project();
