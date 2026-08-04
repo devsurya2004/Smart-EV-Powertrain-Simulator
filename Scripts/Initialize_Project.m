@@ -18,7 +18,9 @@ function [EV, scriptFolder, projectRoot] = Initialize_Project()
 %
 %==========================================================================
 
-clc
+if usejava('desktop')
+    clc
+end
 
 %%=========================================================================
 % Project Paths
@@ -46,6 +48,10 @@ end
 %==========================================================================
 
 run(fullfile(scriptFolder,'Project_Parameters.m'));
+
+assignin('base','EV',EV);
+assignin('base','projectRoot',projectRoot);
+assignin('base','scriptFolder',scriptFolder);
 
 end
 

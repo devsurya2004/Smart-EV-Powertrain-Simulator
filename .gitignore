@@ -1,3 +1,7 @@
+# ==========================================================
+# MATLAB Default
+# ==========================================================
+
 # Autosave files
 *.asv
 *.m~
@@ -38,3 +42,20 @@ codegen/
 # SimBiology backup files
 *.sbproj.backup
 *.sbproj.bak
+
+# ==========================================================
+# Smart EV Powertrain Simulator
+# ==========================================================
+
+# Generated simulation data
+Data/
+
+# Generated figures
+Results/
+
+# MATLAB project metadata
+resources/project/
+
+# Temporary MATLAB files
+*.tmp
+*.log

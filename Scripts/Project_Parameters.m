@@ -149,7 +149,15 @@ EV.Inverter.SwitchingFrequency = 10000;      % Hz
 EV.Inverter.Efficiency = 0.98;
 
 EV.Inverter.ModulationIndex = 0.95;
+%%=========================================================================
+% Regenerative Braking Parameters
+%==========================================================================
 
+EV.Regeneration.Efficiency = 0.75;
+
+EV.Regeneration.MaxPowerkW = 80;
+
+EV.Regeneration.MinSpeedkmh = 10;
 
 %%=========================================================================
 % DRIVER

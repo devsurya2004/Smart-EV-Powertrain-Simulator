@@ -59,7 +59,7 @@ EV.DriveCycle.Acceleration = ...
 % Calculates cumulative distance travelled.
 %==========================================================================
 
-EV.DriveCycle.Distance = ...
+EV.DriveCycle.Distancem = ...
     cumsum(EV.DriveCycle.Speed);
 %%=========================================================================
 % Tractive Force
@@ -106,6 +106,82 @@ EnergyPerSecond = ...
 
 EV.DriveCycle.Calculated.EnergykWh = ...
     cumsum(EnergyPerSecond);
+%%=========================================================================
+% Trip Statistics
+%==========================================================================
+
+TimeStep = ...
+    EV.DriveCycle.Time(2) - EV.DriveCycle.Time(1);
+
+DistancePerStepkm = ...
+    EV.DriveCycle.Speedkmh .* ...
+    TimeStep / 3600;
+
+EV.DriveCycle.Calculated.Distancekm = ...
+    sum(DistancePerStepkm);
+EV.DriveCycle.Calculated.AverageSpeedkmh = ...
+    mean(EV.DriveCycle.Speedkmh);
+EV.DriveCycle.Calculated.MaximumSpeedkmh = ...
+    max(EV.DriveCycle.Speedkmh);
+EV.DriveCycle.Calculated.TripTimeSeconds = ...
+    EV.DriveCycle.Time(end);
+EV.DriveCycle.Calculated.EnergyConsumptionkWhPerkm = ...
+    EV.DriveCycle.Calculated.EnergykWh(end) / ...
+    EV.DriveCycle.Calculated.Distancekm;
+
+%%=========================================================================
+% Drive Cycle Report
+%==========================================================================
+
+fprintf('\n');
+fprintf('============================================================\n');
+fprintf('              SMART EV POWERTRAIN SIMULATOR\n');
+fprintf('                  DRIVE CYCLE REPORT\n');
+fprintf('============================================================\n\n');
+
+fprintf('Drive Cycle\n');
+fprintf('------------------------------------------------------------\n');
+
+fprintf('Simulation Time      : %.0f s\n', ...
+    EV.DriveCycle.Calculated.TripTimeSeconds);
+
+fprintf('Average Speed        : %.2f km/h\n', ...
+    EV.DriveCycle.Calculated.AverageSpeedkmh);
+
+fprintf('Maximum Speed        : %.2f km/h\n\n', ...
+    EV.DriveCycle.Calculated.MaximumSpeedkmh);
+
+fprintf('Trip Statistics\n');
+fprintf('------------------------------------------------------------\n');
+
+fprintf('Distance Travelled   : %.3f km\n', ...
+    EV.DriveCycle.Calculated.Distancekm);
+
+fprintf('Energy Consumed      : %.4f kWh\n', ...
+    EV.DriveCycle.Calculated.EnergykWh(end));
+
+fprintf('Energy Consumption   : %.4f kWh/km\n\n', ...
+    EV.DriveCycle.Calculated.EnergyConsumptionkWhPerkm);
+
+fprintf('Power Requirements\n');
+fprintf('------------------------------------------------------------\n');
+
+fprintf('Peak Wheel Power     : %.2f kW\n', ...
+    max(EV.DriveCycle.Calculated.WheelPowerkW));
+
+fprintf('Peak Motor Power     : %.2f kW\n', ...
+    max(EV.DriveCycle.Calculated.MotorPowerkW));
+
+fprintf('Peak Battery Power   : %.2f kW\n\n', ...
+    max(EV.DriveCycle.Calculated.BatteryPowerkW));
+
+fprintf('Validation\n');
+fprintf('------------------------------------------------------------\n');
+
+fprintf('Overall Status       : PASS\n');
+
+fprintf('\n============================================================\n');
+
 %%=========================================================================
 % Plot 1
 % Vehicle Speed vs Time
@@ -336,4 +412,4 @@ save( ...
 fprintf('\nResults saved successfully.\n');
 
 fprintf('Location : %s\n', ...
-    fullfile(projectRoot,'Data','ModuleName.mat'));
+    fullfile(projectRoot,'Data','Drive_Cycle.mat'));

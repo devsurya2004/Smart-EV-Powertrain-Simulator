@@ -808,3 +808,269 @@ Followed by:
 4. Final Documentation
 
 5. GitHub Release Preparation
+# Project Log – Day 2
+
+**Date:** 03 August 2026
+
+## Overview
+
+Today's work focused on completing the first functional version of the Smart EV Powertrain Simulator by integrating the MATLAB calculation scripts with the Simulink model. A complete closed-loop EV powertrain simulation was successfully achieved.
+
+---
+
+## MATLAB Development
+
+### Completed Modules
+
+- Battery
+- Motor
+- Transmission
+- Inverter
+- Vehicle
+- Vehicle Dynamics
+- Drive Cycle
+- Regenerative Braking
+- Performance Summary
+
+### Project Initialization
+
+- Created `Initialize_Project.m`.
+- Automatically loads `Project_Parameters.m`.
+- Creates required project folders (`Data`, `Models`, `Results`).
+- Initializes the complete `EV` parameter structure.
+
+### Project Organization
+
+Renamed calculation scripts for a cleaner architecture:
+
+- `Battery_Calculations.m` → `Battery.m`
+- `Motor_Calculations.m` → `Motor.m`
+- `Transmission_Calculations.m` → `Transmission.m`
+- `Inverter_Calculations.m` → `Inverter.m`
+- `Vehicle_Calculations.m` → `Vehicle.m`
+
+Updated all dependent files using MATLAB's **Rename and Update** feature.
+
+### Performance Summary
+
+Successfully executed `Run_Project.m`.
+
+The script now:
+
+- Loads every subsystem automatically.
+- Calculates complete vehicle parameters.
+- Displays a formatted performance summary.
+- Saves performance plots in the `Results` folder.
+
+---
+
+## Simulink Development
+
+### Overall Architecture
+
+Implemented the complete EV powertrain:
+
+```text
+Drive Cycle
+      ↓
+Driver Controller
+      ↓
+Battery
+      ↓
+Inverter
+      ↓
+PMSM Motor
+      ↓
+Transmission
+      ↓
+Vehicle Dynamics
+      ↓
+Vehicle Speed
+```
+
+---
+
+## Drive Cycle
+
+Created a custom drive cycle using the **Signal Editor**.
+
+Vehicle profile:
+
+- Accelerate from 0 km/h to 50 km/h
+- Cruise at 50 km/h
+- Decelerate to 20 km/h
+- Stop at 0 km/h
+
+Simulation duration: **120 seconds**
+
+---
+
+## Driver Controller
+
+Implemented a closed-loop speed controller.
+
+**Inputs**
+
+- Desired Speed
+- Actual Speed
+
+**Output**
+
+- Throttle
+
+Controller:
+
+- PID Controller
+- Unit Delay feedback
+- Closed-loop speed regulation
+
+---
+
+## Battery Model
+
+Implemented the battery subsystem.
+
+**Input**
+
+- Throttle
+
+**Output**
+
+- Battery Power
+
+Battery power is calculated using the peak motor power and throttle demand.
+
+---
+
+## Inverter Model
+
+Implemented inverter efficiency.
+
+**Input**
+
+- Battery Power
+
+**Output**
+
+- Motor Power
+
+The inverter output is calculated by multiplying battery power with inverter efficiency.
+
+---
+
+## PMSM Motor
+
+Implemented the PMSM motor subsystem.
+
+**Input**
+
+- Motor Power
+
+**Output**
+
+- Motor Torque
+
+Motor torque is calculated from motor power using the motor's base angular speed.
+
+Torque output is limited using a Saturation block with the maximum motor torque.
+
+---
+
+## Transmission
+
+Implemented a single-speed gearbox.
+
+**Input**
+
+- Motor Torque
+
+**Output**
+
+- Wheel Torque
+
+Wheel torque is calculated using:
+
+- Gear ratio
+- Transmission efficiency
+
+---
+
+## Vehicle Dynamics
+
+Implemented a simple longitudinal vehicle model.
+
+The subsystem includes:
+
+- Torque-to-force conversion
+- Rolling resistance
+- Aerodynamic drag
+- Net force calculation
+- Force-to-acceleration conversion
+- Vehicle speed integration
+
+Vehicle speed is fed back to the Driver Controller through a Unit Delay block, creating a complete closed-loop system.
+
+---
+
+## Debugging and Improvements
+
+Resolved several issues during development:
+
+- Workspace initialization errors
+- Simulink callback issues
+- Missing `EV` variables
+- Script naming conflicts
+- Empty calculated parameters
+- Invalid Gain block expressions
+- Rolling resistance initialization errors
+- Aerodynamic drag initialization errors
+- Parameter loading issues
+
+---
+
+## Simulation Results
+
+The complete powertrain simulation now runs successfully without errors.
+
+Observations:
+
+- Desired speed profile is generated correctly.
+- Closed-loop feedback is functioning.
+- Vehicle accelerates and decelerates according to the drive cycle.
+- Speed tracking is operational.
+
+Current limitations:
+
+- Driver controller requires PID tuning.
+- Motor model uses a simplified power-to-torque conversion.
+- Vehicle dynamics require a speed-dependent aerodynamic drag model.
+- Regenerative braking is not yet integrated into the Simulink model.
+
+---
+
+## Current Project Status
+
+| Module | Status |
+|---------|--------|
+| MATLAB Backend | ✅ Complete |
+| Project Initialization | ✅ Complete |
+| Drive Cycle | ✅ Complete |
+| Driver Controller | ✅ Working |
+| Battery | ✅ Working |
+| Inverter | ✅ Working |
+| PMSM Motor | ✅ Working |
+| Transmission | ✅ Working |
+| Vehicle Dynamics | ✅ Working |
+| Closed-Loop Simulation | ✅ Successful |
+| Performance Summary | ✅ Complete |
+
+---
+
+## Next Steps
+
+- Tune the PID controller for improved speed tracking.
+- Replace simple motor model with a more realistic PMSM model.
+- Implement speed-dependent aerodynamic drag.
+- Add regenerative braking to the Simulink model.
+- Create dashboard gauges and visualization.
+- Validate simulation results against MATLAB calculations.
