@@ -29,7 +29,7 @@ EV.Requirements.DriveConfiguration     = "Front Wheel Drive";
 
 EV.Requirements.BatteryVoltage         = 400;         % V
 
-EV.Requirements.BatteryCapacity        = 45;          % kWh
+EV.Requirements.BatteryCapacity        = 45;     % kWh
 
 EV.Requirements.DriveCycle             = "FTP75";
 
@@ -76,6 +76,20 @@ EV.Motor.MaximumEfficiency             = 0.96;        % -
 EV.Battery.TargetPackVoltage     = 400;        % V
 EV.Battery.TargetPackEnergykWh   = 45;         % kWh
 EV.Battery.TargetPackEnergyWh    = EV.Battery.TargetPackEnergykWh * 1000;
+
+%% Battery Simulation Parameters
+
+EV.Battery.InitialSOC        = 100;     % %
+EV.Battery.MaximumSOC        = 100;     % %
+EV.Battery.MinimumSOC        = 0;       % %
+
+EV.Battery.Efficiency        = 0.96;    % Discharge efficiency
+EV.Battery.RegenEfficiency   = 0.70;    % Regenerative charging efficiency
+
+% Battery Energy (Joules)
+EV.Battery.TotalEnergyJ = EV.Battery.TargetPackEnergykWh * 3.6e6;
+EV.Battery.DischargeEfficiency = 0.95;
+EV.Battery.ChargeEfficiency    = 0.90;
 
 %%=========================================================================
 % Battery Cell Specifications (LFP 32700 Cell)
@@ -174,6 +188,12 @@ EV.Driver.MaximumBrake                 = 100;         % %
 EV.Environment.Gravity                 = 9.81;        % m/s^2
 
 EV.Environment.AirDensity              = 1.225;       % kg/m^3
+
+%%=========================================================================
+% ROAD
+%%=========================================================================
+
+EV.Road.Grade = 0;          % radians
 
 %%=========================================================================
 % CALCULATED PARAMETERS

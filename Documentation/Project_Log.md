@@ -1074,3 +1074,301 @@ Current limitations:
 - Add regenerative braking to the Simulink model.
 - Create dashboard gauges and visualization.
 - Validate simulation results against MATLAB calculations.
+# Project Log – Smart EV Powertrain Simulator
+
+**Project:** Smart EV Powertrain Simulator  
+**Version:** 1.0  
+**Date:** 04-Aug-2026
+
+---
+
+# Objectives
+
+- Improve the realism of the Smart EV Powertrain Simulator.
+- Replace simplified vehicle dynamics with physics-based equations.
+- Improve battery and motor response.
+- Tune the driver controller for smoother speed tracking.
+
+---
+
+# Work Completed
+
+## 1. Driver Controller
+
+### Improvements
+- Tuned the PID controller.
+- Enabled output saturation.
+- Enabled anti-windup using Back Calculation.
+- Reduced oscillations in vehicle speed response.
+
+### Final PID Parameters
+
+| Parameter | Value |
+|-----------|------:|
+| Proportional Gain (P) | 0.015 |
+| Integral Gain (I) | 0.0005 |
+| Derivative Gain (D) | 0 |
+| Filter Coefficient (N) | 100 |
+| Output Limits | -1 to 1 |
+| Anti-Windup | Back Calculation |
+| Back Calculation Coefficient (Kb) | 1 |
+
+---
+
+## 2. Battery Subsystem
+
+### Improvements
+- Replaced fixed battery model with MATLAB Function.
+- Added realistic battery power calculation.
+- Added first-order battery dynamics.
+- Implemented State of Charge (SOC) estimation.
+- Included charging and discharging efficiencies.
+- Verified SOC changes during acceleration and regenerative braking.
+
+### Outputs
+- Battery Power
+- Battery SOC
+
+---
+
+## 3. PMSM Motor Subsystem
+
+### Improvements
+- Added first-order motor dynamics.
+
+Transfer Function:
+
+\[
+G(s)=\frac{1}{0.5s+1}
+\]
+
+- Added motor torque saturation.
+- Improved torque response during acceleration and braking.
+
+---
+
+## 4. Vehicle Dynamics Subsystem
+
+The simplified vehicle model was replaced with a physics-based longitudinal dynamics model.
+
+### Features Added
+
+- Tractive force calculation
+- Rolling resistance
+- Aerodynamic drag
+- Road grade force
+- Vehicle acceleration calculation
+- Vehicle speed integration
+- Vehicle distance integration
+- Vehicle speed saturation
+
+---
+
+## Vehicle Equations
+
+### Tractive Force
+
+\[
+F_t=\frac{T_{wheel}}{R_{wheel}}
+\]
+
+---
+
+### Rolling Resistance
+
+\[
+F_r=C_rmg
+\]
+
+---
+
+### Aerodynamic Drag
+
+\[
+F_d=\frac{1}{2}\rho C_dAv^2
+\]
+
+---
+
+### Road Grade Force
+
+\[
+F_g=mg\sin(\theta)
+\]
+
+(Currently tested with **θ = 0°**)
+
+---
+
+### Net Force
+
+\[
+F_{net}=F_t-F_r-F_d-F_g
+\]
+
+---
+
+### Vehicle Acceleration
+
+\[
+a=\frac{F_{net}}{m}
+\]
+
+---
+
+### Vehicle Speed
+
+\[
+v=\int a\,dt
+\]
+
+---
+
+### Vehicle Distance
+
+\[
+x=\int v\,dt
+\]
+
+---
+
+## 5. Simulink Model Improvements
+
+### Added
+
+- Vehicle acceleration output
+- Vehicle distance output
+- Speed saturation
+- Feedback loop for drag calculation
+- Feedback loop for rolling resistance
+- Road grade model
+
+### Corrected
+
+- MATLAB Function parsing errors
+- Workspace variable access issues
+- Parameter initialization errors
+- Signal routing
+
+---
+
+# Simulation Results
+
+The updated model successfully demonstrates:
+
+- Smooth drive cycle tracking
+- Realistic acceleration
+- Realistic deceleration
+- Regenerative braking
+- Continuous battery power calculation
+- Battery SOC estimation
+- Rolling resistance effects
+- Aerodynamic drag effects
+- Vehicle speed limitation
+
+---
+
+# Issues Encountered
+
+### MATLAB Function Errors
+
+Resolved:
+
+- Undefined variable `EV.Vehicle`
+- Undefined variable `EV.Environment`
+- Undefined variable `EV.Road`
+- MATLAB Function parser errors
+- Incorrect workspace variable access
+
+### Solution
+
+- Replaced workspace references with local constants inside MATLAB Function blocks.
+- Added missing project parameters.
+- Corrected subsystem connections.
+
+---
+
+# Files Modified
+
+- Project_Parameters.m
+- Driver Controller
+- Battery Subsystem
+- PMSM Motor
+- Vehicle Dynamics
+
+---
+
+# Current Model Outputs
+
+The simulator currently provides:
+
+- Vehicle Speed
+- Vehicle Acceleration
+- Vehicle Distance
+- Motor Torque
+- Wheel Torque
+- Battery Power
+- Battery State of Charge (SOC)
+
+---
+
+# Progress Summary
+
+| Subsystem | Status |
+|------------|--------|
+| Drive Cycle | ✅ Complete |
+| Driver Controller | ✅ Complete |
+| Battery Model | ✅ Complete |
+| PMSM Motor | ✅ Complete (Basic) |
+| Vehicle Dynamics | ✅ Complete |
+| Vehicle Speed | ✅ Complete |
+| Vehicle Distance | ✅ Complete |
+| Vehicle Acceleration | ✅ Complete |
+| Regenerative Braking | ✅ Basic |
+| Transmission | ⏳ Pending |
+| Inverter Model | ⏳ Pending |
+| Motor Speed Model | ⏳ Pending |
+| Thermal Model | ⏳ Pending |
+| BMS | ⏳ Pending |
+
+---
+
+# Overall Progress
+
+**Estimated Completion:** **~70%**
+
+The simulator now includes a complete closed-loop EV powertrain with:
+
+- Driver controller
+- Battery model
+- PMSM motor
+- Vehicle longitudinal dynamics
+- Regenerative braking
+- SOC estimation
+
+The remaining work primarily involves drivetrain refinement and advanced subsystem modeling.
+
+---
+
+# Next Session Plan
+
+## Priority 1
+- Build the **Transmission Subsystem**
+- Calculate Motor RPM from Vehicle Speed
+
+## Priority 2
+- Implement PMSM Torque-Speed Characteristics
+  - Constant Torque Region
+  - Constant Power Region
+  - Maximum Motor Speed Limit
+
+## Priority 3
+- Add Inverter Efficiency Model
+
+## Priority 4
+- Improve Regenerative Braking Strategy
+
+## Priority 5
+- Replace hardcoded constants with `Simulink.Parameter` objects for cleaner parameter management.
+
+---
