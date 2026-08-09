@@ -341,14 +341,10 @@ The implemented motor characteristic contains two main operating regions:
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```text
 Smart-EV-Powertrain-Simulator/
-│
-├── Battery/
-├── Controllers/
-├── Data/
 │
 ├── Documentation/
 │   ├── Architecture/
@@ -366,42 +362,33 @@ Smart-EV-Powertrain-Simulator/
 │   └── Vehicle.md
 │
 ├── DriveCycles/
+│
 ├── Images/
-├── MATLAB/
+│   ├── Dashboard.png
+│   ├── Energy_Flow.png
+│   ├── Motor_Characteristics.png
+│   └── Powertrain_Model.png
 │
 ├── Models/
 │   ├── Smart_EV_Powertrain.slx
 │   └── Smart_EV_Powertrain_Dashboard.slx
 │
-├── Motor/
-├── Reports/
 ├── Results/
+│   ├── DriveCycle/
+│   ├── Motor/
+│   ├── PerformanceSummary/
+│   └── RegenerativeBraking/
 │
 ├── Scripts/
-│   ├── Battery.m
-│   ├── Drive_Cycle.m
-│   ├── Initialize_Project.m
-│   ├── Inverter.m
-│   ├── Motor.m
-│   ├── Motor_Characteristics.m
-│   ├── Performance_Summary.m
-│   ├── Project_Parameters.m
-│   ├── Regenerative_Braking.m
-│   ├── Transmission.m
-│   ├── Vehicle.m
-│   └── Vehicle_Dynamics.m
 │
-├── Tests/
-├── Vehicle/
-│
+├── .gitattributes
 ├── .gitignore
 ├── Coding_Standard.md
+├── LICENSE
 ├── README.md
 ├── Run_Project.m
 └── Smart-EV-Powertrain-Simulator.prj
 ```
-
----
 
 # 🚀 Installation
 
@@ -760,7 +747,11 @@ See the [LICENSE](LICENSE) file for the complete license text.
 
 **Suryadev P M**
 
-Electrical and Electronics Engineering Student
+Electrical and Electronics Engineering
+
+Interested in electric vehicles, power electronics, MATLAB/Simulink modelling, and powertrain systems.
+
+[GitHub](https://github.com/devsurya2004)
 
 ### Project
 
