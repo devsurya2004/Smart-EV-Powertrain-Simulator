@@ -1489,3 +1489,114 @@ The remaining work primarily involves drivetrain refinement and advanced subsyst
 - IEEE-style report preparation.
 - Presentation (PPT) development.
 - Viva preparation.
+---
+
+## Dashboard Development and Final Integration
+
+### Dashboard Implementation
+
+- Created a dedicated Simulink dashboard model:
+  `Smart_EV_Powertrain_Dashboard.slx`
+- Integrated the major EV powertrain subsystems with the dashboard.
+- Added real-time visualization of vehicle, battery and motor/powertrain parameters.
+- Added a circular gauge for vehicle speed.
+- Added a circular gauge for battery State of Charge (SOC).
+- Added numerical displays for important system parameters.
+
+### Vehicle Parameters Displayed
+
+- Vehicle Speed (km/h)
+- Brake Force (N)
+- Vehicle Distance
+- Vehicle Acceleration
+
+### Battery Parameters Displayed
+
+- Battery SOC (%)
+- Battery Power (kW)
+- Battery Voltage (V)
+- Battery Current (A)
+
+### Motor / Powertrain Parameters Displayed
+
+- Motor Torque (Nm)
+- Motor Power (kW)
+- Motor RPM
+
+### Dashboard Organization
+
+The dashboard was organized into three main sections:
+
+1. **VEHICLE**
+2. **BATTERY**
+3. **MOTOR / POWERTRAIN**
+
+This arrangement provides a clear separation between vehicle-level, battery-level and motor/powertrain information.
+
+### Dashboard Validation
+
+The dashboard was tested through the complete Simulink model.
+
+During testing:
+
+- Vehicle speed response was observed.
+- Battery SOC response was monitored.
+- Battery voltage and current were monitored.
+- Battery power was monitored.
+- Motor torque and motor power were observed.
+- Motor RPM was monitored.
+- Brake force, acceleration and distance were displayed.
+- Dashboard values were checked during different simulation durations.
+
+### SOC Model Validation
+
+The battery SOC subsystem was tested during simulation.
+
+The SOC response was observed over the simulation period and the dashboard SOC gauge was configured with a range of:
+
+- Minimum: 0%
+- Maximum: 100%
+
+### Display and Layout Improvements
+
+The dashboard was refined to improve readability and presentation quality.
+
+The final layout contains:
+
+- A project title.
+- Three functional sections.
+- Vehicle speed gauge.
+- Battery SOC gauge.
+- Numerical parameter displays.
+- Consistent parameter labels.
+- Clear separation between vehicle, battery and motor/powertrain information.
+
+### Final Dashboard Status
+
+The Smart EV Powertrain Dashboard was successfully integrated with the EV powertrain simulation and provides a real-time visual representation of the major system parameters.
+
+The dashboard is intended to serve as the primary visualization interface for the completed Smart EV Powertrain Simulator.
+---
+
+# Day 10 – Dashboard Development and Final Simulation Validation
+
+**Date:** 08 August 2026
+
+## Objectives
+
+- Complete the Smart EV Powertrain dashboard.
+- Improve visualization of the final simulation.
+- Verify important vehicle, battery and motor parameters.
+- Validate the dashboard using the completed Simulink model.
+- Prepare the project for final documentation.
+
+---
+
+## Work Completed
+
+### 1. Dashboard Model Finalization
+
+Completed the dedicated dashboard model:
+
+```text
+Models/Smart_EV_Powertrain_Dashboard.slx
