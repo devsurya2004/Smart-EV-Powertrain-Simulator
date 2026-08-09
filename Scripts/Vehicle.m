@@ -16,12 +16,6 @@
 %   - Peak Mechanical Power
 %==========================================================================
 
-clc
-
-close all
-
-clear
-
 [EV, scriptFolder, projectRoot] = Initialize_Project();
 
 %%=========================================================================
@@ -64,8 +58,9 @@ EV.Calculated.RequiredMotorPower = ...
 % Acceleration Performance
 %==========================================================================
 
-TargetSpeed = 100 / 3.6;      % m/s
-AccelerationTime = 9.5;       % s
+TargetSpeed = EV.Requirements.AccelerationTargetSpeed;
+
+AccelerationTime = EV.Requirements.ZeroToHundredTime;
 
 EV.Calculated.Acceleration = ...
     TargetSpeed / AccelerationTime;

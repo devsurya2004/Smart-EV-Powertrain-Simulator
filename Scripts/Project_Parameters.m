@@ -33,6 +33,10 @@ EV.Requirements.BatteryCapacity        = 45;     % kWh
 
 EV.Requirements.DriveCycle             = "FTP75";
 
+EV.Requirements.ZeroToHundredTime = 9.5;      % s
+
+EV.Requirements.AccelerationTargetSpeed = 100/3.6;   % m/s
+
 %%=========================================================================
 % VEHICLE
 %==========================================================================
@@ -73,8 +77,10 @@ EV.Motor.MaximumEfficiency             = 0.96;        % -
 %==========================================================================
 
 % Battery Pack Specifications
-EV.Battery.TargetPackVoltage     = 400;        % V
-EV.Battery.TargetPackEnergykWh   = 45;         % kWh
+EV.Battery.TargetPackVoltage = ...
+    EV.Requirements.BatteryVoltage;            %V
+EV.Battery.TargetPackEnergykWh = ...
+    EV.Requirements.BatteryCapacity;         % kWh
 EV.Battery.TargetPackEnergyWh    = EV.Battery.TargetPackEnergykWh * 1000;
 
 %% Battery Simulation Parameters
@@ -82,9 +88,7 @@ EV.Battery.TargetPackEnergyWh    = EV.Battery.TargetPackEnergykWh * 1000;
 EV.Battery.InitialSOC        = 100;     % %
 EV.Battery.MaximumSOC        = 100;     % %
 EV.Battery.MinimumSOC        = 0;       % %
-
-EV.Battery.Efficiency        = 0.96;    % Discharge efficiency
-EV.Battery.RegenEfficiency   = 0.70;    % Regenerative charging efficiency
+EV.Battery.MaximumPower = 50000;         % W
 
 % Battery Energy (Joules)
 EV.Battery.TotalEnergyJ = EV.Battery.TargetPackEnergykWh * 3.6e6;
@@ -140,6 +144,7 @@ EV.Battery.Calculated.Current.Peak    = [];
 
 % Pack Mass
 EV.Battery.Calculated.Mass.Total        = [];
+
 %%=========================================================================
 % TRANSMISSION
 %==========================================================================

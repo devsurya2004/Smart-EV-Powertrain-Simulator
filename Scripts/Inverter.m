@@ -1,9 +1,3 @@
-clc
-
-close all
-
-clear
-
 [EV, scriptFolder, projectRoot] = Initialize_Project();
 %%=========================================================================
 % Load Battery Calculation Results
@@ -162,10 +156,8 @@ fprintf('\n============================================================\n');
 % Saves inverter calculation results.
 %==========================================================================
 
-save( ...
-    fullfile(projectRoot,'Data','Inverter_Calculations.mat'), ...
-    'EV');
+outputFile = fullfile(projectRoot,'Data','Inverter_Calculations.mat');
 
-fprintf('\nInverter calculations saved successfully.\n');
-fprintf('Location : %s\n', ...
-    fullfile(projectRoot,'Data','Inverter_Calculations.mat'));
+save(outputFile,'EV');
+
+fprintf('Location : %s\n',outputFile);

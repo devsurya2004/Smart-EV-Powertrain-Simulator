@@ -10,12 +10,6 @@
 %
 %==========================================================================
 
-clc
-
-close all
-
-clear
-
 %%=========================================================================
 % Initialize Project
 % Initializes project paths and loads all project parameters.
@@ -224,10 +218,10 @@ fprintf('Voltage Error         : %.2f %%\n', ...
 fprintf('Energy Error          : %.2f %%\n', ...
     EnergyErrorPercent);
 
-ValidationStatus = "[PASS]";
+ValidationStatus = "✓ PASS";
 
 if VoltageErrorPercent > 2 || EnergyErrorPercent > 5
-    ValidationStatus = "FAIL";
+    ValidationStatus = "✗ FAIL";
 end
 fprintf('Overall Status        : %s\n', ValidationStatus);
 
@@ -238,10 +232,8 @@ fprintf('\n============================================================\n');
 % Saves the battery calculation results for future modules.
 %==========================================================================
 
-save( ...
-    fullfile(projectRoot,'Data','Battery_Calculations.mat'), ...
-    'EV');
+outputFile = fullfile(projectRoot,'Data','Battery_Calculations.mat');
 
-fprintf('\nBattery calculations saved successfully.\n');
-fprintf('Location : %s\n', ...
-    fullfile(projectRoot,'Data','Battery_Calculations.mat'));
+save(outputFile,'EV');
+
+fprintf('Location : %s\n', outputFile);

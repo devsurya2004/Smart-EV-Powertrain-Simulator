@@ -1,11 +1,4 @@
-clc
-
-close all
-
-clear
-
 [EV, scriptFolder, projectRoot] = Initialize_Project();
-
 %%=========================================================================
 % Load Vehicle Calculation Results
 %==========================================================================
@@ -125,9 +118,13 @@ EV.DriveCycle.Calculated.MaximumSpeedkmh = ...
     max(EV.DriveCycle.Speedkmh);
 EV.DriveCycle.Calculated.TripTimeSeconds = ...
     EV.DriveCycle.Time(end);
-EV.DriveCycle.Calculated.EnergyConsumptionkWhPerkm = ...
-    EV.DriveCycle.Calculated.EnergykWh(end) / ...
-    EV.DriveCycle.Calculated.Distancekm;
+if EV.DriveCycle.Calculated.Distancekm > 0
+    EV.DriveCycle.Calculated.EnergyConsumptionkWhPerkm = ...
+        EV.DriveCycle.Calculated.EnergykWh(end) / ...
+        EV.DriveCycle.Calculated.Distancekm;
+else
+    EV.DriveCycle.Calculated.EnergyConsumptionkWhPerkm = 0;
+end
 
 %%=========================================================================
 % Drive Cycle Report

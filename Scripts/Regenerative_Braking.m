@@ -1,9 +1,3 @@
-clc
-
-close all
-
-clear
-
 [EV, scriptFolder, projectRoot] = Initialize_Project();
 %%=========================================================================
 % Load Required Data

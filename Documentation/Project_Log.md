@@ -1372,3 +1372,120 @@ The remaining work primarily involves drivetrain refinement and advanced subsyst
 - Replace hardcoded constants with `Simulink.Parameter` objects for cleaner parameter management.
 
 ---
+# Project Log
+
+---
+
+## Day 8 – Vehicle Dynamics Enhancement and Mechanical Braking Integration
+
+**Date:** 06 August 2026
+
+### Objectives
+- Improve vehicle deceleration performance.
+- Reduce speed tracking error during braking.
+- Implement a realistic mechanical braking system.
+- Refine driver controller and regenerative braking.
+
+### Work Completed
+
+#### 1. Vehicle Dynamics Enhancement
+- Reviewed the complete Vehicle Dynamics subsystem.
+- Verified tractive force, rolling resistance, aerodynamic drag, and road grade calculations.
+- Confirmed force balance and acceleration calculations.
+
+#### 2. Mechanical Braking Implementation
+- Added a new Brake input to the Vehicle Dynamics subsystem.
+- Designed a Mechanical Brake MATLAB Function block.
+- Implemented braking force generation based on brake command and vehicle speed.
+- Connected mechanical braking force to the net force summation block.
+- Tuned maximum braking force for stable deceleration.
+
+#### 3. Driver Controller Improvements
+- Refined throttle and brake control logic.
+- Added deadband handling to reduce unnecessary switching.
+- Improved regenerative braking transition.
+- Prevented simultaneous throttle and brake commands.
+
+#### 4. Controller Testing
+- Performed multiple simulation runs.
+- Compared Desired Speed and Actual Speed responses.
+- Evaluated braking performance after integrating mechanical brakes.
+- Verified smoother deceleration and improved stopping behavior.
+
+### Results
+- Successfully integrated mechanical braking.
+- Improved vehicle stopping performance.
+- Reduced coasting during braking.
+- Eliminated major oscillations in vehicle speed.
+- Achieved more realistic braking characteristics.
+
+### Status
+✅ Mechanical braking successfully integrated and validated.
+
+---
+
+## Day 9 – PID Optimization and Final Controller Tuning
+
+**Date:** 07 August 2026
+
+### Objectives
+- Optimize PID controller performance.
+- Improve speed tracking accuracy.
+- Finalize throttle and brake logic.
+- Prepare the EV model for documentation.
+
+### Work Completed
+
+#### 1. PID Controller Tuning
+- Optimized proportional, integral, and derivative gains.
+- Improved acceleration response.
+- Reduced steady-state tracking error.
+- Enhanced controller stability.
+
+#### 2. Throttle Logic Redesign
+- Redesigned complete throttle and brake MATLAB Function.
+- Added desired speed and actual speed comparison.
+- Introduced speed tolerance and stop conditions.
+- Eliminated throttle activation after vehicle stop.
+
+#### 3. Brake Logic Optimization
+- Improved brake command generation.
+- Reduced throttle–brake conflict.
+- Smoothed braking response.
+- Verified proper regenerative and mechanical braking coordination.
+
+#### 4. Simulation Validation
+- Compared Desired Speed vs Actual Speed.
+- Verified throttle response.
+- Verified brake response.
+- Evaluated overall controller performance.
+- Confirmed stable vehicle operation throughout the drive cycle.
+
+### Results
+- Significant improvement in speed tracking.
+- Stable throttle and brake operation.
+- Vehicle successfully follows the drive cycle.
+- No unwanted oscillations after stopping.
+- Achieved a robust closed-loop EV speed control system.
+
+### Final Status
+- ✅ Driver Controller Completed
+- ✅ Vehicle Dynamics Completed
+- ✅ Mechanical Braking Completed
+- ✅ Regenerative Braking Completed
+- ✅ Battery Model Completed
+- ✅ Inverter Model Completed
+- ✅ PMSM Motor Completed
+- ✅ Transmission Completed
+- ✅ Closed-Loop Speed Control Validated
+
+### Overall Project Progress
+**Estimated Completion:** **98–99%**
+
+### Next Planned Work
+- Final technical review of the complete project.
+- GitHub repository setup.
+- Project documentation.
+- IEEE-style report preparation.
+- Presentation (PPT) development.
+- Viva preparation.
