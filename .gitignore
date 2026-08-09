@@ -51,7 +51,7 @@ codegen/
 Data/
 
 # Generated figures
-Results/
+# Results are intentionally tracked for documentation and visualization.
 
 # MATLAB project metadata
 resources/project/
