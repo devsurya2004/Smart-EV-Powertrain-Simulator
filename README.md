@@ -187,19 +187,44 @@ The project includes a dedicated Simulink dashboard displaying:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Technology | Purpose |
+The Smart EV Powertrain Simulator is built using engineering and simulation tools commonly used for electric vehicle powertrain development.
+
+| Technology / Tool | Purpose |
 |---|---|
-| MATLAB | Engineering calculations and parameter processing |
-| Simulink | Dynamic EV powertrain modelling |
-| MATLAB Functions | Component-level mathematical models |
-| MATLAB Project | Project and path management |
-| Git | Version control |
-| GitHub | Repository hosting |
-| Markdown | Technical documentation |
+| **MATLAB** | Engineering calculations, parameter management, component calculations and result generation |
+| **Simulink** | Dynamic modelling and simulation of the complete EV powertrain |
+| **MATLAB Project** | Project organization, path management and reproducible project setup |
+| **MATLAB Scripts (.m)** | Battery, motor, inverter, transmission, vehicle dynamics and regenerative braking calculations |
+| **Simulink Models (.slx)** | Integrated powertrain model, dashboard and subsystem-level simulation |
+| **MATLAB Function Blocks** | Custom component behaviour such as battery, inverter, motor and vehicle dynamics |
+| **Scopes & Visualization** | Monitoring battery, motor, vehicle and controller variables during simulation |
+| **Git** | Version control and project history |
+| **GitHub** | Remote repository, project documentation and source-code hosting |
 
----
+### Core Simulation Technologies
+
+The project combines several modelling approaches:
+
+- **Physics-based calculations** for vehicle forces and power requirements
+- **Mathematical models** for battery, inverter, motor and transmission behaviour
+- **Dynamic Simulink models** for time-domain simulation
+- **Closed-loop control** for vehicle speed tracking
+- **Drive-cycle based testing** for evaluating vehicle response
+- **Regenerative braking modelling** for energy recovery
+- **Data logging and visualization** for analysing simulation results
+
+### Main File Types
+
+```text
+.m       → MATLAB calculation and configuration scripts
+.slx     → Simulink models
+.prj     → MATLAB Project file
+.mat     → Stored calculation and simulation results
+.png     → Generated plots, diagrams and project visuals
+.md      → Project documentation
+```
 
 ## 📐 Reference Vehicle
 
@@ -503,39 +528,40 @@ The dashboard provides a high-level view of the simulated EV.
 
 ---
 
-# 📊 Simulation Outputs
+## 📊Visual Showcase
 
-The simulator provides information about:
+### EV Powertrain Dashboard
 
-### Vehicle
+The project includes a dedicated Simulink dashboard for monitoring important vehicle and powertrain variables during simulation.
 
-- Desired speed
-- Actual speed
+![Smart EV Powertrain Dashboard](Images/Dashboard.png)
+
+The dashboard provides visual monitoring of:
+
+- Vehicle speed
 - Vehicle acceleration
 - Vehicle distance
-- Brake force
-
-### Battery
-
 - Battery SOC
 - Battery voltage
 - Battery current
 - Battery power
-
-### Motor
-
 - Motor torque
 - Motor power
 - Motor RPM
+- Brake command
 
-### Powertrain
+### Motor Characteristics
 
-- Power flow
-- Transmission output torque
-- Vehicle tractive force
-- Regenerative braking behaviour
+The PMSM traction motor is modelled using continuous torque-speed and power-speed characteristics.
 
----
+![PMSM Motor Characteristics](Images/Motor_Characteristics.png)
+
+The characteristics demonstrate the two main operating regions:
+
+- **Constant Torque Region:** 0–6000 RPM
+- **Constant Power Region:** 6000–12000 RPM
+
+The model uses a base speed of 6000 RPM and a maximum motor speed of 12000 RPM.
 
 # 📈 Results
 
@@ -781,150 +807,3 @@ Dashboard Visualization
 
 </p>
 
-## Tech Stack
-
-The Smart EV Powertrain Simulator is built using engineering and simulation tools commonly used for electric vehicle powertrain development.
-
-| Technology / Tool | Purpose |
-|---|---|
-| **MATLAB** | Engineering calculations, parameter management, component calculations and result generation |
-| **Simulink** | Dynamic modelling and simulation of the complete EV powertrain |
-| **MATLAB Project** | Project organization, path management and reproducible project setup |
-| **MATLAB Scripts (.m)** | Battery, motor, inverter, transmission, vehicle dynamics and regenerative braking calculations |
-| **Simulink Models (.slx)** | Integrated powertrain model, dashboard and subsystem-level simulation |
-| **MATLAB Function Blocks** | Custom component behaviour such as battery, inverter, motor and vehicle dynamics |
-| **Scopes & Visualization** | Monitoring battery, motor, vehicle and controller variables during simulation |
-| **Git** | Version control and project history |
-| **GitHub** | Remote repository, project documentation and source-code hosting |
-
-### Core Simulation Technologies
-
-The project combines several modelling approaches:
-
-- **Physics-based calculations** for vehicle forces and power requirements
-- **Mathematical models** for battery, inverter, motor and transmission behaviour
-- **Dynamic Simulink models** for time-domain simulation
-- **Closed-loop control** for vehicle speed tracking
-- **Drive-cycle based testing** for evaluating vehicle response
-- **Regenerative braking modelling** for energy recovery
-- **Data logging and visualization** for analysing simulation results
-
-### Main File Types
-
-```text
-.m       → MATLAB calculation and configuration scripts
-.slx     → Simulink models
-.prj     → MATLAB Project file
-.mat     → Stored calculation and simulation results
-.png     → Generated plots, diagrams and project visuals
-.md      → Project documentation
-```
-### Installation
-
-Follow the steps below to install and prepare the Smart EV Powertrain Simulator.
-
-### Prerequisites
-
-Before running the project, make sure the following software is installed:
-
-- MATLAB
-- Simulink
-- Git
-- A GitHub account if you want to clone or contribute to the repository
-
-The project is designed to be opened through the MATLAB Project file:
-
-```text
-Smart-EV-Powertrain-Simulator.prj
-```
-## Usage
-
-The Smart EV Powertrain Simulator can be used in two main stages:
-
-1. MATLAB-based engineering calculations
-2. Integrated MATLAB/Simulink dynamic simulation
-
-The recommended workflow is:
-
-```text
-Open MATLAB Project
-        ↓
-Initialize Project
-        ↓
-Load Project Parameters
-        ↓
-Run Engineering Calculations
-        ↓
-Open Simulink Model
-        ↓
-Run Simulation
-        ↓
-Monitor Results
-        ↓
-Analyse Performance
-```
-## Visual Showcase
-
-### EV Powertrain Dashboard
-
-The project includes a dedicated Simulink dashboard for monitoring important vehicle and powertrain variables during simulation.
-
-![Smart EV Powertrain Dashboard](Images/Dashboard.png)
-
-The dashboard provides visual monitoring of:
-
-- Vehicle speed
-- Vehicle acceleration
-- Vehicle distance
-- Battery SOC
-- Battery voltage
-- Battery current
-- Battery power
-- Motor torque
-- Motor power
-- Motor RPM
-- Brake command
-
-### Motor Characteristics
-
-The PMSM traction motor is modelled using continuous torque-speed and power-speed characteristics.
-
-![PMSM Motor Characteristics](Images/Motor_Characteristics.png)
-
-The characteristics demonstrate the two main operating regions:
-
-- **Constant Torque Region:** 0–6000 RPM
-- **Constant Power Region:** 6000–12000 RPM
-
-The model uses a base speed of 6000 RPM and a maximum motor speed of 12000 RPM.
-
-### Powertrain Architecture
-
-The complete EV powertrain follows a closed-loop architecture:
-
-```text
-Drive Cycle
-     │
-     ▼
-Driver Controller
-     │
-     ▼
-Battery
-     │
-     ▼
-Inverter
-     │
-     ▼
-PMSM Motor
-     │
-     ▼
-Transmission
-     │
-     ▼
-Vehicle Dynamics
-     │
-     ▼
-Vehicle Speed
-     │
-     └────────────── Feedback ──────────────►
-                         Driver Controller
