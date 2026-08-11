@@ -15,6 +15,10 @@ EV.Calculated = loadedVehicle.EV.Calculated;
 
 EV.DriveCycle.Time = ...
     (0:1:120)';
+
+TimeStep = ...
+    EV.DriveCycle.Time(2) - EV.DriveCycle.Time(1);
+
 %%=========================================================================
 % Vehicle Speed Profile
 % Generates a simple urban drive cycle.
@@ -43,17 +47,17 @@ EV.DriveCycle.Speed = ...
 % Vehicle Acceleration
 % Calculates acceleration from the speed profile.
 %==========================================================================
-
 EV.DriveCycle.Acceleration = ...
     [0;
-    diff(EV.DriveCycle.Speed)];
+    diff(EV.DriveCycle.Speed) / TimeStep];
+
 %%=========================================================================
 % Distance Calculation
 % Calculates cumulative distance travelled.
 %==========================================================================
-
 EV.DriveCycle.Distancem = ...
-    cumsum(EV.DriveCycle.Speed);
+    cumsum(EV.DriveCycle.Speed * TimeStep);
+
 %%=========================================================================
 % Tractive Force
 % Calculates the required tractive force during the drive cycle.
@@ -102,9 +106,6 @@ EV.DriveCycle.Calculated.EnergykWh = ...
 %%=========================================================================
 % Trip Statistics
 %==========================================================================
-
-TimeStep = ...
-    EV.DriveCycle.Time(2) - EV.DriveCycle.Time(1);
 
 DistancePerStepkm = ...
     EV.DriveCycle.Speedkmh .* ...
